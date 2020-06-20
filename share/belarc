@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export BELA_HOST=bela.local
+export BELA_USER=root
+export BBB_ADDRESS=${BELA_USER}@${BELA_HOST}
+alias go_bela="ssh ${BELA_USER}@${BELA_HOST}"
+
+export BELA_SDK=/usr/local/bela/Bela
+export BELA_SYSROOT=/usr/local/linaro/BelaSysroot
+
+export PATH=${BELA_SDK}/scripts:${PATH}
+

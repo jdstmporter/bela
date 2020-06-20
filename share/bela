@@ -1,0 +1,45 @@
+#!/bin/bash
+
+if [[ -z $BBB_ADDRESS ]] ; then
+    echo "Environment variable BBB_ADDRESS has not been set; please source $HOME/.belarc"
+    exit 1
+fi
+
+SCRIPTS=/usr/local/bela/Bela/scripts
+COMMAND=$1
+
+case $COMMAND in
+    clean)
+	PROJECT=$2
+	$SCRIPTS/build_project.sh --clean $PROJECT
+	;;
+    build)
+	PROJECT=$2
+	$SCRIPTS/build_project.sh . --force -n -p $PROJECT
+	;;
+    list)
+	$SCRIPTS/run_project.sh
+	;;
+    start)
+	PROJECT=$2
+	$SCRIPTS/run_project.sh $PROJECT -b
+	;;
+    run)
+	PROJECT=$2
+	$SCRIPTS/run_project.sh $PROJECT -f
+	;;
+    fg)
+	$SCRIPTS/connect_to_project.sh
+	;;
+    stop)
+	$SCRIPTS/stop_running.sh
+	;;
+    halt)
+	$SCRIPTS/halt_board.sh
+	;;
+    *)
+	;;
+esac
+
+exit 0
+    
